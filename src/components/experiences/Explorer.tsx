@@ -6,7 +6,6 @@ import { Search, X } from "lucide-react";
 import { experiences } from "@/data/experiences";
 import { EXPERIENCE_CATEGORIES, EXPERIENCE_CATEGORY_LABELS, type ExperienceCategory } from "@/types/experience";
 import { ExperienceCard } from "@/components/experiences/ExperienceCard";
-import { Footer } from "@/components/layout/Footer";
 
 const PAGE_SIZE = 12;
 const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -123,7 +122,6 @@ export function Explorer() {
           {filtered.length === 0 ? <div className="explorer-empty"><span className="empty-icon"><Search aria-hidden="true" size={25} /></span><h2>No se han encontrado experiencias</h2><p>Prueba con otros términos o ajusta los filtros para descubrir nuevas experiencias.</p><button type="button" className="explorer-primary-button" onClick={clearAll}>Limpiar filtros</button></div> : <><div className="experience-grid">{visible.map((experience) => <ExperienceCard key={experience.id} experience={experience} />)}</div>{pageCount > 1 && <nav className="pagination" aria-label="Paginación de experiencias"><button type="button" onClick={() => navigate({ page: page - 1 }, "push")} disabled={page <= 1}>Anterior</button>{Array.from({ length: pageCount }, (_, index) => index + 1).map((number) => <button type="button" key={number} aria-current={number === page ? "page" : undefined} onClick={() => navigate({ page: number }, "push")}>{number}</button>)}<button type="button" onClick={() => navigate({ page: page + 1 }, "push")} disabled={page >= pageCount}>Siguiente</button></nav>}</>}
         </section>
       </section>
-      <Footer />
     </>
   );
 }

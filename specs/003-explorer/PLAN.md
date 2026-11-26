@@ -1,5 +1,9 @@
 # PLAN — Explorador de experiencias de Wanderlust Explorer
 
+## Estado final de auditoría
+
+La implementación de Explorer está presente en `src/components/experiences/Explorer.tsx`, `src/app/experiences/page.tsx` y estilos compartidos. Las tareas deben reflejar únicamente comprobaciones efectivamente realizadas: el usuario comunicó validación visual/funcional de la página de perfil, no una validación manual específica del explorador. La auditoría actual ejecutó lint, TypeScript, build, diff check, verificó HTTP 200 de rutas y revisó URL directa y código; no reemplaza pruebas en navegador de interacción, historial, teclado ni responsive. La procedencia/licencia de seis fotos heredadas sigue sin acreditarse. 32 WebP del catálogo se documentan como imágenes ilustrativas generadas con IA.
+
 ## 1. Enfoque y arquitectura
 
 Implementar `/experiences` sobre App Router y el catálogo local existente. La URL será la fuente de verdad de `search`, `category`, `destination` y `page`; no se duplicarán el catálogo ni los favoritos. Se reutilizarán `ExperienceCard`, `FavoritesProvider` y la Navbar existente. Sin nuevas dependencias ni funcionalidades ajenas a la SPEC. El catálogo conserva seis fotografías originales y usa imágenes WebP generadas mediante IA para los 94 registros restantes; estas imágenes son ilustrativas y no representan necesariamente el destino o la actividad exactos.
@@ -58,6 +62,15 @@ Asociar etiquetas a búsqueda y selectores; dar nombres accesibles a acciones de
 - Comprobar datos y enlaces de `ExperienceCard`, favoritos compartidos sin navegación accidental, conservación de las seis fotografías originales, existencia y formato local de las imágenes IA asignadas, existencia del placeholder de respaldo, footer único y funcionamiento de Navbar y Home.
 - Ejecutar `npm run lint`, `npx tsc --noEmit`, `npm run build` y `git diff --check`. Revisar en navegador escritorio, intermedio y móvil, teclado, foco, nombres accesibles, contraste y estado vacío. Registrar cualquier comprobación no disponible sin declararla superada.
 
+### Resultado de auditoría y límites
+
+- Ejecutados en esta auditoría: `npm run lint`, `npx tsc --noEmit`, `npm run build`, `git diff --check`; todos correctos.
+- Comprobados adicionalmente: HTTP 200 para `/experiences` y rutas principales/detalle; solicitudes directas a URLs con búsqueda/filtros; 100 `imageUrl` del catálogo resuelven a archivos locales existentes. Son comprobaciones técnicas/estáticas, no una prueba de interacción completa.
+- Inspección del código confirma regex escapada case-insensitive, combinación AND, parámetros URL, lectura de URL al render, chips, limpieza, paginación e IME.
+- Pendiente de navegador: interacción de escritura y filtros, chips, atrás/adelante, no-recarga, paginación extremo a extremo, accesibilidad por teclado/foco y revisión visual responsive en móvil/intermedio/escritorio.
+- Integración del footer: la auditoría confirmó que `src/app/layout.tsx` y `Explorer` renderizaban instancias duplicadas en `/experiences`. Se corrigió eliminando la importación y el render local de `Footer` en Explorer; `RootLayout` conserva la única instancia compartida y el contenido/diseño no se modificaron.
+- Activos: 32 WebP son ilustrativos y generados mediante IA, como ya documenta este plan; no representan necesariamente de forma exacta el destino/actividad. Se conservan seis fotografías heredadas cuya procedencia/licencia no está acreditada. No se afirma licencia para ningún grupo sin evidencia.
+
 ## 7. Decisiones y límites
 
-Quedan adoptados: búsqueda literal con regex case-insensitive; URL como fuente de verdad de los cuatro parámetros; 12 resultados por página y ausencia de `page` en la primera; normalización al interactuar; footer compartido; y conservación del placeholder de respaldo. Las 32 imágenes WebP nuevas fueron generadas mediante IA y son ilustrativas; se reutilizan en experiencias temáticamente afines. La procedencia/licencia de las seis fotografías originales preexistentes no está acreditada en esta fase; no se les atribuye una licencia inventada. No se incorporan nuevas dependencias. La implementación queda pendiente de autorización y no incluye cambios en otras páginas ni en el modelo.
+Quedan adoptados: búsqueda literal con regex case-insensitive; URL como fuente de verdad de los cuatro parámetros; 12 resultados por página y ausencia de `page` en la primera; normalización al interactuar; footer compartido único desde `RootLayout`; y conservación del placeholder de respaldo. Las 32 imágenes WebP nuevas fueron generadas mediante IA y son ilustrativas; se reutilizan en experiencias temáticamente afines. La procedencia/licencia de las seis fotografías originales preexistentes no está acreditada en esta fase; no se les atribuye una licencia inventada. No se incorporan nuevas dependencias.

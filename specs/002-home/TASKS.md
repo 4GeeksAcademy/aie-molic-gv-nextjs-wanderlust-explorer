@@ -6,7 +6,7 @@ Las tareas están ordenadas por dependencias. Implementación y validación manu
 
 - [x] **T-202 — Construir hero, buscador y navegación de filtros.** Componer hero con título, introducción y CTA; derivar países y categorías del catálogo; generar `/experiences` con `category` y `destination` únicamente para valores seleccionados, sin campo ni parámetro `search` en esta fase (reservado para 003-explorer) y sin implementar filtrado. **Archivos principales:** `src/app/page.tsx`, `src/components/home/`, `src/types/experience.ts`, `src/data/experiences.ts`. **Dependencias:** activos aprobados T-201 para hero; datos existentes de foundation. **Referencias:** RF-001 a RF-003; CA-001 a CA-003.
 
-- [x] **T-203 — Presentar categorías y conteos derivados.** Mostrar las cinco categorías con etiquetas españolas, fotografía representativa, conteo real del catálogo y enlace con categoría interna en `category`. **Archivos principales:** `src/components/home/`, `src/types/experience.ts`, `src/data/experiences.ts`. **Dependencias:** T-201; estructura Home T-202. **Referencias:** RF-004; CA-004, CA-005.
+- [x] **T-203 — Presentar categorías y conteos derivados.** Mostrar las cinco categorías con etiquetas españolas, fotografía representativa, conteo real del catálogo y enlace con categoría interna en `category`. **Archivos principales:** `src/components/home/`, `src/types/experience.ts`, `src/data/experiences.ts`. **Dependencias:** T-201; estructura Home T-202. **Referencias:** RF-004; CA-004, CA-005. La implementación y la validación manual de categorías/conteos fueron confirmadas por el usuario; la documentación de licencia de sus imágenes sigue separadamente pendiente en T-201.
 
 - [x] **T-204 — Crear ExperienceCard y conectarla a favoritos.** Implementar tarjeta reusable con datos del registro, enlace real al detalle y acción accesible conectada al `FavoritesProvider` existente; mantener una única fuente de estado y sin persistencia. **Archivos principales:** `src/components/experiences/ExperienceCard.tsx`, `src/components/favorites/ExperienceFavoriteButton.tsx`, `src/components/favorites/FavoritesProvider.tsx` (reutilizar; modificar solo si estrictamente necesario). **Dependencias:** activos aprobados T-201. **Referencias:** RF-005; CA-006, CA-007.
 
@@ -18,4 +18,4 @@ Las tareas están ordenadas por dependencias. Implementación y validación manu
 
 ## Estado de fase
 
-**002-home: implementación y validación funcional/visual completadas.** T-201 permanece pendiente exclusivamente por la documentación de procedencia y licencia de los activos fotográficos. No iniciar `003-explorer` sin autorización.
+**002-home: implementación y validación funcional/visual comunicadas como correctas por el usuario.** T-201 permanece pendiente por la documentación de procedencia, atribución y licencia de los activos fotográficos identificados. No se atribuye licencia ni se cierra esa tarea hasta que exista evidencia documental.

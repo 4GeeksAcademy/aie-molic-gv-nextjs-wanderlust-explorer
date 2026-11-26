@@ -1,5 +1,9 @@
 # PLAN — Página de inicio de Wanderlust Explorer
 
+## Estado final de auditoría
+
+La Home está implementada y el usuario comunicó validaciones manuales satisfactorias de composición, carga de fotografías, navegación/parámetros, categorías y conteos, destacadas/detalle, favoritos, responsive, accesibilidad y legibilidad. La procedencia/licencia de los seis activos fotográficos identificados no está acreditada: T-201 permanece abierta hasta documentarla. No se interpreta la generación IA del catálogo como procedencia/licencia de las imágenes.
+
 ## 1. Enfoque
 
 Implementar `/` sobre la base ya existente de Next.js App Router, respetando `docs/DESIGN.md` y los mockups como referencia de jerarquía editorial, no como medidas rígidas. El catálogo `src/data/experiences.ts`, los tipos y categorías de `src/types/experience.ts`, `Navbar` y `FavoritesProvider` serán las únicas fuentes compartidas; no se duplicarán datos ni estado. La Home enviará filtros en URL, pero no implementará filtrado del explorador.
@@ -37,7 +41,7 @@ Mantener `FavoritesProvider` existente como fuente única de estado en memoria. 
 
 ## 7. Recursos fotográficos
 
-Antes de implementación, acordar e incorporar únicamente activos locales con licencia y procedencia documentadas. Se requieren: una panorámica natural para el hero; cinco imágenes representativas de Aventura, Cultura, Gastronomía, Bienestar y Naturaleza; e imágenes para las seis experiencias destacadas, salvo que sus registros apunten ya a activos adecuados. Inspeccionar los activos actuales bajo `public/images/experiences/` y no asumir que el placeholder genérico satisface una representación fotográfica. Mantener rutas locales, optimizar dimensiones/formato y usar `next/image` con tamaños/recortes responsivos cuando corresponda; registrar atribución/licencia en documentación de implementación acordada. No descargar ni generar nada como parte de este plan documental; su incorporación queda condicionada a aprobación previa.
+Los activos presentes son `public/images/home/hero.jpeg`, cinco imágenes en `public/images/categories/` y seis fotografías destacadas en `public/images/experiences/`. Se usan localmente y se confirmó manualmente que cargan en la Home. Su procedencia, autoría, atribución y licencia no están acreditadas en la documentación disponible. Mantenerlas identificadas como pendientes; no atribuir licencia ni marcar T-201 como cerrada hasta documentar procedencia/autorización. Las imágenes WebP generadas mediante IA para el catálogo en `003-explorer` son un conjunto distinto y no acreditan estos activos.
 
 ## 8. Diseño responsive y accesibilidad
 
@@ -50,6 +54,13 @@ Tomar desktop y móvil como referencias de composición: protagonismo fotográfi
 - Comprobar los datos renderizados de las tarjetas frente al registro y la ruta de detalle; probar favoritos al añadir/quitar y navegar.
 - Ejecutar scripts existentes (`npm run lint`, `npm run build`) y la comprobación TypeScript disponible (`npx tsc --noEmit`); no introducir herramientas ni dependencias sin aprobación.
 - Revisar visualmente desktop y móvil conforme a mockups, ausencia de overflow, foco/teclado, etiquetas, contraste y carga de recursos locales. Verificar que Navbar se mantiene funcional en rutas existentes.
+
+### Resultado registrado
+
+- En `002-home/T-207`, la persona usuaria comunicó que comprobó manualmente y encontró correcto: composición coherente con mockups; carga de fotografías; navegación y parámetros; categorías y conteos; destacadas y detalle; favoritos compartidos; diseño responsive móvil/escritorio; accesibilidad y legibilidad.
+- `npm run lint`, `npx tsc --noEmit`, `npm run build` y `git diff --check` se registraron como correctos en la validación de Home; en la auditoría final vuelven a pasar.
+- La verificación automatizada actual de enlaces del catálogo encontró 100 rutas locales y cero archivos inexistentes.
+- Pendiente: procedencia/licencia de los seis activos fotográficos originales de Home/categorías/destacadas; T-201 continúa abierta. No se inventan resultados ni licencias.
 
 ## 10. Decisiones acordadas y dependencias
 

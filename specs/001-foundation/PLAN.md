@@ -1,5 +1,9 @@
 # PLAN — Fundamentos compartidos de Wanderlust Explorer
 
+## Estado final de auditoría
+
+La base funcional está implementada. El catálogo local de 100 registros fue generado mediante IA durante esta fase, según confirmación del usuario. Se mantienen pendientes las comprobaciones manuales de navegador/responsive y de recarga/estado efímero que no se han confirmado como realizadas. Las licencias de las fotografías heredadas no se consideran acreditadas por esta confirmación.
+
 ## 1. Enfoque
 
 Implementar los fundamentos como módulos pequeños dentro de `src/`, aprovechando Next.js App Router, React y TypeScript ya instalados. Las cinco páginas tendrán estructura provisional mínima; su diseño y comportamiento definitivos se dejarán a futuras especificaciones. No se añadirán bases de datos, APIs, persistencia ni librerías externas de estado.
@@ -35,11 +39,11 @@ Se mantendrán los campos mínimos requeridos y no se añadirán propiedades de 
 
 ## 4. Dataset, validación e imágenes
 
-`src/data/experiences.ts` exportará un array de solo lectura (`Experience[]` compatible, con tipos literales preservados cuando resulte conveniente) y local. Será el único origen del catálogo; ninguna página realizará solicitudes externas.
+`src/data/experiences.ts` exportará un array de solo lectura (`Experience[]` compatible, con tipos literales preservados cuando resulte conveniente) y local. Será el único origen del catálogo; ninguna página realizará solicitudes externas. El catálogo de 100 registros fue generado mediante IA durante `001-foundation`, confirmado por el usuario en la auditoría final; no es generación en tiempo de ejecución.
 
 La generación de contenido se hará como datos estáticos revisables, no mediante generación en tiempo de ejecución. La validación cubrirá: longitud total 100, IDs no vacíos y únicos, veinte elementos por categoría, campos de texto en español, ciudad y país informados, precio finito positivo, valoración finita en `[0, 5]` y referencia de imagen presente. Estas comprobaciones se automatizarán con pruebas o una comprobación de datos ejecutable en el proyecto, sin incorporar dependencias de validación innecesarias.
 
-Las imágenes serán archivos locales bajo `public/images/experiences/` cuando se disponga de activos adecuados. Para completar el catálogo sin depender de hosts externos, se admitirá como placeholder una ruta local estable a una imagen genérica incluida en `public/`; las referencias deberán corresponder a recursos existentes. No se añadirá carga remota ni configuración de dominios de imágenes en Next.js. La selección/creación concreta de activos podrá resolverse al ejecutar la tarea de imágenes; no se introducirán fotografías con licencias dudosas.
+Las imágenes serán archivos locales bajo `public/images/experiences/` cuando se disponga de activos adecuados. Para completar el catálogo sin depender de hosts externos, se admitirá como placeholder una ruta local estable a una imagen genérica incluida en `public/`; las referencias deberán corresponder a recursos existentes. No se añadirá carga remota ni configuración de dominios de imágenes en Next.js. La selección/creación concreta de activos podrá resolverse al ejecutar la tarea de imágenes. La generación IA del dataset no acredita la procedencia ni la licencia de las fotografías; cualquier activo cuya documentación no exista seguirá expresamente pendiente de verificación.
 
 ## 5. Identidad visual y estilos globales
 
@@ -75,6 +79,13 @@ La validación se realizará en capas:
 
 El `package.json` no incluye actualmente framework de pruebas. Antes de añadirlo, se preferirá aprovechar herramientas existentes o las capacidades nativas de Node/TypeScript disponibles; cualquier dependencia adicional de pruebas deberá justificarse y aprobarse en la fase de implementación. No se ejecutan instalaciones en esta planificación.
 
+### Estado de validación registrado
+
+- Confirmación del usuario: dataset de 100 experiencias generado mediante IA en esta fase.
+- Verificaciones documentadas previamente: TypeScript, validación del catálogo (cantidad, unicidad, distribución, campos y rangos), build y respuestas HTTP de rutas. No se vuelve a atribuir a esta auditoría la ejecución histórica de cada comprobación del dataset.
+- Auditoría final actual: `npm run lint`, `npx tsc --noEmit`, `npm run build` y `git diff --check` ejecutados correctamente; inspección estática verificó 100 referencias de imágenes locales sin rutas inexistentes.
+- Pendiente: validación manual en navegador de navegación sin recarga, intercambio de favoritos entre rutas y reinicio tras recarga, interacción por teclado/foco y revisión responsive/visual. No se marca T-007 como completada hasta contar con confirmación de estas pruebas.
+
 ## 9. Decisiones técnicas y justificación
 
 - **Catálogo local estático:** satisface reutilización y funcionamiento autónomo con la mínima infraestructura.
@@ -90,9 +101,9 @@ El `package.json` no incluye actualmente framework de pruebas. Antes de añadirl
 
 ## 10. Aspectos que requieren aprobación
 
-1. Autorizar la incorporación de `lucide-react` para cumplir el requisito de Lucide Icons; actualmente no figura en `package.json`.
-2. Confirmar si se permite usar `next/font/google` para Playfair Display e Inter, que puede necesitar acceso a red durante la preparación/build, o si se prefieren archivos de fuente locales.
-3. Acordar el método de pruebas si la cobertura automatizada requerida demanda incorporar un framework de pruebas que no está instalado.
-4. Acordar activos visuales con licencia adecuada si se requieren imágenes fotográficas reales; los placeholders locales son suficientes para validar la estructura.
+1. Autorizar la incorporación de `lucide-react` para cumplir el requisito de Lucide Icons; actualmente sí figura en `package.json` y ya se utiliza.
+2. Confirmar si se permite usar `next/font/google` para Playfair Display e Inter, que puede necesitar acceso a red durante la preparación/build, o si se prefieren archivos de fuente locales; el proyecto ya los configura y el build actual pasa.
+3. Acordar el método de pruebas si la cobertura automatizada requerida demanda incorporar un framework de pruebas que no está instalado; no añadir dependencia sin autorización.
+4. Documentar procedencia/licencia de activos fotográficos sin acreditación. No atribuir licencias ni inferir que la confirmación de generación IA del dataset cubre los derechos de imágenes.
 
 Estos puntos no impiden completar una planificación conceptual, pero se resolverán antes de cualquier cambio que añada dependencias o activos externos.
