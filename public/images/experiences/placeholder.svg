@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Imagen de experiencia pendiente</title>
+  <desc id="desc">Placeholder abstracto en tonos verde bosque y crema.</desc>
+  <rect width="1200" height="800" fill="#F8F6F0"/>
+  <path d="M0 590 290 310l190 180 240-280 480 380v210H0Z" fill="#74837C"/>
+  <path d="m0 650 270-180 210 150 250-220 470 300v100H0Z" fill="#184E45"/>
+  <circle cx="930" cy="175" r="72" fill="#E58B5B"/>
+  <path d="M0 735h1200v65H0z" fill="#202B28" opacity=".12"/>
+</svg>
