@@ -5,6 +5,7 @@ import { experiences } from "@/data/experiences";
 import { ExperienceSearch } from "@/components/home/ExperienceSearch";
 import { CategorySection } from "@/components/home/CategorySection";
 import { FeaturedExperiences } from "@/components/home/FeaturedExperiences";
+import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
   const countries = [...new Set(experiences.map((experience) => experience.destination.country))].sort((a, b) => a.localeCompare(b, "es"));
@@ -24,11 +25,7 @@ export default function HomePage() {
       <div className="home-search-wrap"><ExperienceSearch countries={countries} /></div>
       <CategorySection />
       <FeaturedExperiences />
-      <footer className="home-footer">
-        <div><Link className="footer-brand" href="/">Wanderlust Explorer</Link><p>Historias y experiencias para descubrir el mundo con curiosidad.</p></div>
-        <nav aria-label="Enlaces del pie de página"><Link href="/experiences">Experiencias</Link><Link href="/favorites">Favoritos</Link><Link href="/profile">Perfil</Link></nav>
-        <small>© Wanderlust Explorer</small>
-      </footer>
+      <Footer />
     </div>
   );
 }
