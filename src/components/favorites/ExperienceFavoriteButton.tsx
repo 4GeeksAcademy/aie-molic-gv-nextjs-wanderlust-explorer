@@ -3,22 +3,21 @@
 import { Heart } from "lucide-react";
 import { useFavorites } from "@/components/favorites/FavoritesProvider";
 
-export function ExperienceFavoriteButton({ experienceId }: { experienceId: string }) {
+export function ExperienceFavoriteButton({ experienceId, title }: { experienceId: string; title: string }) {
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
   const favorite = isFavorite(experienceId);
 
   return (
     <button
-      className="text-button favorite-toggle"
+      className={`experience-favorite${favorite ? " is-favorite" : ""}`}
       type="button"
       aria-pressed={favorite}
-      aria-label={favorite ? "Quitar de favoritos" : "Añadir a favoritos"}
+      aria-label={favorite ? `Quitar ${title} de favoritos` : `Añadir ${title} a favoritos`}
       onClick={() =>
         favorite ? removeFavorite(experienceId) : addFavorite(experienceId)
       }
     >
-      <Heart aria-hidden="true" size={18} fill={favorite ? "currentColor" : "none"} />
-      {favorite ? "En favoritos" : "Añadir a favoritos"}
+      <Heart aria-hidden="true" size={20} fill={favorite ? "currentColor" : "none"} />
     </button>
   );
 }

@@ -16,7 +16,7 @@ export default function ExperiencesPage() {
             <Link href={`/experiences/${experience.id}`}>
               {experience.title} · {EXPERIENCE_CATEGORY_LABELS[experience.category]}
             </Link>
-            <ExperienceFavoriteButton experienceId={experience.id} />
+            <ExperienceFavoriteButton experienceId={experience.id} title={experience.title} />
           </li>
         ))}
       </ul>

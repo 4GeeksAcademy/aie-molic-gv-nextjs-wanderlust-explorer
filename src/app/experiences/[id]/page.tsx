@@ -28,7 +28,7 @@ async function ExperienceDetail({ params }: { params: Promise<{ id: string }> })
       <p className="eyebrow">{EXPERIENCE_CATEGORY_LABELS[experience.category]}</p>
       <h1 className="page-title" id="page-title">{experience.title}</h1>
       <p className="page-description">{experience.destination.city}, {experience.destination.country}</p>
-      <ExperienceFavoriteButton experienceId={experience.id} />
+      <ExperienceFavoriteButton experienceId={experience.id} title={experience.title} />
       <Link href="/experiences">Volver a experiencias</Link>
     </section>
   );
