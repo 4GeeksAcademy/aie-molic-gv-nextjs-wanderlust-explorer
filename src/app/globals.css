@@ -292,6 +292,36 @@ a {
 .home-footer nav a:hover { text-decoration: underline; }
 .home-footer > small { grid-column: 1 / -1; border-top: 1px solid rgb(255 255 255 / 22%); padding-top: 1rem; color: #e8efec; }
 
+/* Experience detail */
+.detail-page { min-height: 70vh; background: var(--color-cream); }
+.detail-shell { width: min(100% - 2rem, 76rem); margin-inline: auto; padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3rem, 7vw, 6rem); }
+.detail-back-link { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .5rem; margin-bottom: 1.25rem; color: var(--color-forest); font-weight: 700; text-decoration: none; }
+.detail-back-link:hover { text-decoration: underline; }
+.detail-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.detail-main { min-width: 0; overflow: hidden; border-radius: 1rem; background: var(--color-surface); box-shadow: 0 .35rem 1.5rem rgb(32 43 40 / 7%); }
+.detail-image-wrap { position: relative; aspect-ratio: 1.55; background: var(--color-surface-muted); }
+.detail-image { object-fit: cover; }
+.detail-copy { padding: clamp(1.25rem, 3vw, 2rem); }
+.detail-title { margin: 0; color: var(--color-charcoal); font-size: clamp(2rem, 5vw, 3.75rem); line-height: 1.08; }
+.detail-location { display: flex; align-items: center; gap: .45rem; margin: 1rem 0 .6rem; color: var(--color-sage-text); }
+.detail-rating { display: inline-flex; align-items: center; gap: .4rem; margin: 0; color: var(--color-charcoal); font-weight: 700; }
+.detail-rating svg { color: var(--color-terracotta-text); }
+.detail-description { margin: 1.25rem 0 0; color: var(--color-sage-text); font-size: 1rem; line-height: 1.8; }
+.detail-price-card { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; border: 1px solid rgb(32 43 40 / 8%); border-radius: 1rem; background: var(--color-surface); padding: 1.25rem; box-shadow: 0 .35rem 1.5rem rgb(32 43 40 / 7%); }
+.detail-price-label { flex-basis: 100%; margin: 0; color: var(--color-sage-text); font-size: .85rem; font-weight: 600; }
+.detail-price { flex: 1; margin: 0; color: var(--color-charcoal); font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; }
+.detail-price-card .experience-favorite { position: static; display: inline-flex; width: auto; min-height: 2.75rem; flex: 0 0 auto; align-items: center; justify-content: center; gap: .55rem; border: 1px solid rgb(32 43 40 / 14%); border-radius: 999px; padding: 0 .9rem; box-shadow: none; font: inherit; font-weight: 700; }
+.detail-related { padding-top: clamp(3rem, 7vw, 5rem); }
+.detail-related .section-heading { margin-bottom: 1.5rem; }
+.detail-not-found { display: grid; min-height: 65vh; align-content: center; justify-items: center; gap: 1rem; padding: 3rem 1.25rem; text-align: center; }
+.detail-not-found-icon { display: grid; width: 4.5rem; height: 4.5rem; place-items: center; border-radius: 50%; background: #e9edea; color: var(--color-forest); }
+.detail-not-found h1 { margin: 0; color: var(--color-charcoal); font-size: clamp(2rem, 6vw, 3rem); }
+.detail-not-found p { max-width: 34rem; margin: 0; color: var(--color-sage-text); line-height: 1.7; }
+.detail-not-found-link { display: inline-flex; min-height: 2.9rem; align-items: center; justify-content: center; border-radius: 999px; background: var(--color-forest); padding: .7rem 1.2rem; color: white; font-weight: 700; text-decoration: none; }
+.detail-not-found-link:hover { background: #103d35; }
+.detail-back-link:focus-visible,.detail-not-found-link:focus-visible { outline: 3px solid var(--color-terracotta-text); outline-offset: 3px; }
+.detail-price-card .experience-favorite:focus-visible { outline: 3px solid var(--color-terracotta-text); outline-offset: 3px; }
+
 /* Experience explorer */
 .explorer-shell { width: min(100% - 2rem, 76rem); margin-inline: auto; padding-block: clamp(2.5rem, 6vw, 5rem); }
 .explorer-heading { margin-bottom: 2rem; }
@@ -354,6 +384,12 @@ a {
   .experience-card-image { aspect-ratio: 1.65; }
   .home-footer { grid-template-columns: 1fr; }
   .home-footer > small { grid-column: auto; }
+}
+
+@media (min-width: 48rem) {
+  .detail-layout { grid-template-columns: minmax(0, 1fr) minmax(15rem, 20rem); gap: clamp(1.25rem, 3vw, 2.5rem); }
+  .detail-price-card { position: sticky; top: 1.5rem; padding: 1.5rem; }
+  .detail-price-card .experience-favorite { width: auto; min-width: 2.75rem; }
 }
 
 @media (max-width: 32rem) {

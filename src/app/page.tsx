@@ -5,7 +5,6 @@ import { experiences } from "@/data/experiences";
 import { ExperienceSearch } from "@/components/home/ExperienceSearch";
 import { CategorySection } from "@/components/home/CategorySection";
 import { FeaturedExperiences } from "@/components/home/FeaturedExperiences";
-import { Footer } from "@/components/layout/Footer";
 
 export default function HomePage() {
   const countries = [...new Set(experiences.map((experience) => experience.destination.country))].sort((a, b) => a.localeCompare(b, "es"));
@@ -25,7 +24,6 @@ export default function HomePage() {
       <div className="home-search-wrap"><ExperienceSearch countries={countries} /></div>
       <CategorySection />
       <FeaturedExperiences />
-      <Footer />
     </div>
   );
 }
